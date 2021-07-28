@@ -1,4 +1,4 @@
-import { connect, useDispatch } from 'react-redux';
+import { connect } from 'react-redux';
 
 function toggleProduct(product) {
   return {
@@ -7,9 +7,7 @@ function toggleProduct(product) {
   }
 }
 
-const ListProducts = ({products}) => {
-  const dispatch = useDispatch();
-
+const ListProducts = ({products, toggleProduct}) => {
   return (
     <div>
       <h2>Lista de Produtos</h2>
@@ -17,7 +15,7 @@ const ListProducts = ({products}) => {
         <div key={product.id}> 
           <h4>{product.title}</h4>
           <p>Valor: RS {product.value},00</p>
-          <button onClick={() => dispatch(toggleProduct(products))}>Selecionar Curso</button>
+          <button onClick={() => toggleProduct(product)}>Selecionar Curso</button>
         </div>
       ))}
     </div>
@@ -28,4 +26,8 @@ const mapStateToProps = state => ({
   products: state.products,
 })
 
-export default connect(mapStateToProps)(ListProducts);
+const mapDispatchToProps = dispatch  => ({
+  toggleProduct: (product) => dispatch(toggleProduct(product))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);
