@@ -1,11 +1,6 @@
 import { connect } from 'react-redux';
 
-function toggleProduct(product) {
-  return {
-    type: "TOGGLE_PRODUCT",
-    product
-  }
-}
+import * as ProductActions from '../store/actions/product'
 
 const ListProducts = ({products, toggleProduct}) => {
   return (
@@ -23,11 +18,11 @@ const ListProducts = ({products, toggleProduct}) => {
 }
 
 const mapStateToProps = state => ({
-  products: state.products,
+  product: state.product.product,
 })
 
 const mapDispatchToProps = dispatch  => ({
-  toggleProduct: (product) => dispatch(toggleProduct(product))
+  toggleProduct: (product) => dispatch(ProductActions.toggleProduct(product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListProducts);

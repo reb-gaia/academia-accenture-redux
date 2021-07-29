@@ -24,7 +24,7 @@ const Product = ({product}) => {
 }  
 
 const mapStateToProps = state => ({
-  product: state.product
+  product: state.product.product,
 })
 
 export default connect(mapStateToProps)(Product);
