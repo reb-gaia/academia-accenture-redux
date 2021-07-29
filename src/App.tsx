@@ -1,4 +1,3 @@
-import React from 'react';
 import { Provider } from 'react-redux';
 import ListProducts from './components/listProducts';
 import Product from './components/product';

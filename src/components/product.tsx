@@ -1,29 +1,39 @@
 import { connect } from 'react-redux';
+import { IProduct } from '../store/products/types';
+import { RootStore } from '../store/index'
 
-const Product = ({product}) => {
+interface IProductProps {
+  product?: IProduct
+}
+
+
+const Product = ({product = undefined }: IProductProps) => {
   return (
-    <div>
-      {
-        product.id && (
-          <>
-            <h2>Página do Produto</h2>
-            <h3>{product.title}</h3>
-            <p><strong>Valor: RS {product.value}</strong></p>
-            <h4>Modulos</h4>
-            <ul>
-              {product.modules.map(module => (
-                <li key={module.id}>{module.title}</li>  
-              ))}
-            </ul>
-          </>
-        )
-      }
-    </div>
-        
+    <>
+      { product && (
+        <div>
+          {
+            product.id && (
+              <>
+                <h2>Página do Produto</h2>
+                <h3>{product.title}</h3>
+                <p><strong>Valor: RS {product.value}</strong></p>
+                <h4>Modulos</h4>
+                <ul>
+                  {product.modules.map(module => (
+                    <li key={module.id}>{module.title}</li>  
+                  ))}
+                </ul>
+              </>
+            )
+          }
+        </div>
+      )}
+    </>
   )
-}  
+}
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootStore) => ({
   product: state.product.product,
 })
 

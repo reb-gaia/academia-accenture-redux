@@ -1,5 +1,6 @@
-const INITIAL_STATE = {
-  product: {},
+import { IProductInitialState, IProductAction } from './types';
+ 
+const INITIAL_STATE: IProductInitialState = {
   products: [
     {
       id: 1,
@@ -37,8 +38,8 @@ const INITIAL_STATE = {
   ]
 }
 
-function product(state = INITIAL_STATE, action) {
 
+function product(state = INITIAL_STATE, action: IProductAction) {
   if(action.type === 'TOGGLE_PRODUCT') {
     return { 
       ...state,
